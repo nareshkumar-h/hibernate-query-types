@@ -3,6 +3,8 @@
 * HQL - Hibernate Query Language
 * Native 
 * Criteria
+* NamedQuery
+
 
 #### Example
 ```
@@ -21,7 +23,7 @@ import com.naresh.bankingapp.dao.impl.UserDAOImpl;
 import com.naresh.bankingapp.model.User;
 import com.naresh.bankingapp.util.HibernateUtil;
 
-public class TestUserNativeQuery {
+public class TestQueries {
 
 	static UserDAO userDAO = new UserDAOImpl();
 
@@ -29,12 +31,21 @@ public class TestUserNativeQuery {
 
 	public static void main(String[] args) {
 
-		testListUsers();
-		testListUsersNativeQuery();
-		testListUsersCriteriaQuery("ravi");
+		testHQLQuery();
+		testNativeQuery();
+		testCriteriaQuery("ravi");
+		testNamedQuery();
 	}
 
-	private static void testListUsers() {
+	private static void testNamedQuery() {
+		System.out.println("Named Query");
+		Session session = sf.openSession();
+		List<User> users = session.createNamedQuery("findAllUsers", User.class).list();
+		System.out.println(users);
+		session.close();
+	}
+
+	private static void testHQLQuery() {
 		System.out.println("HQL Query");
 		Session session = sf.openSession();
 		List<User> users = session.createQuery("from User", User.class).list();
@@ -42,7 +53,7 @@ public class TestUserNativeQuery {
 		session.close();
 	}
 
-	private static void testListUsersNativeQuery() {
+	private static void testNativeQuery() {
 		System.out.println("Native Query");
 		Session session = sf.openSession();
 		List<User> users = session.createNativeQuery("select * from users", User.class).list();
@@ -51,7 +62,7 @@ public class TestUserNativeQuery {
 	}
 
 	// select * from users where name = ?
-	private static void testListUsersCriteriaQuery(String name) {
+	private static void testCriteriaQuery(String name) {
 		System.out.println("criteriaQuery");
 		Session session = sf.openSession();
 		CriteriaBuilder cb = session.getCriteriaBuilder();
@@ -64,4 +75,15 @@ public class TestUserNativeQuery {
 	}
 
 }
+
+```
+
+#### Declared Named Queries
+```
+@Entity
+@Table(name = "users")
+@NamedNativeQueries({
+    @NamedNativeQuery( name = "findAllUsers", query = "SELECT id, name,email,password from users", resultClass=User.class)
+    })
+ public class User { ... }   
 ```
