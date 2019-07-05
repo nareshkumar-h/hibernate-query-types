@@ -1,8 +1,19 @@
-#### Different types of Queries
+#### Three types of Queries
 
 * HQL - Hibernate Query Language
-* Native 
+* Native SQL
 * Criteria
+
+#### HQL
+* Hibernate Query Language is an object-oriented query language, similar to SQL. 
+* Its works with persistent objects and their properties, as opposed to database tables. 
+* It uses a combination of object oriented programming and SQL and is database independent.
+* Hibernate query Language (HQL), is an object-oriented extension to SQL.
+
+#### Criteria
+* The Criteria API allows you to build up a criteria query object programmatically where you can apply filtration rules and logical conditions.
+
+Note:
 * NamedQuery
 
 
@@ -87,3 +98,7 @@ public class TestQueries {
     })
  public class User { ... }   
 ```
+
+
+Hibernate Query Language is an object-oriented query language, similar to SQL. Its works with persistent objects and their properties, as opposed to database tables. It uses a combination of object oriented programming and SQL and is database independent.
+Hibernate query Language (HQL), is an object-oriented extension to SQL.
