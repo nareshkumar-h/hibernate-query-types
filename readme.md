@@ -100,5 +100,3 @@ public class TestQueries {
 ```
 
 
-Hibernate Query Language is an object-oriented query language, similar to SQL. Its works with persistent objects and their properties, as opposed to database tables. It uses a combination of object oriented programming and SQL and is database independent.
-Hibernate query Language (HQL), is an object-oriented extension to SQL.
